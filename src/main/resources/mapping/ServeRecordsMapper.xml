@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ares.ztserve.Mapper.ServeRecordsMapper">
+    <!--
+    private String cliendId;
+    private String isDescribe;
+    private String isSolve;
+    private String fiestResponse;
+    -->
+    <select id="getServiceRecordsAll" resultType="com.ares.ztserve.Model.ServiceRecords">
+        select is_describe as isDescribe,
+               is_solve as isSolve,
+               first_response as fiestResponse,
+               cliend_id as cliendId
+        from xx_kfkz_v2
+    </select>
+
+    <select id="getServiceRecordsById" resultType="com.ares.ztserve.Model.ServiceRecords">
+        select is_describe as isDescribe,
+               is_solve as isSolve,
+               first_response as fiestResponse,
+               cliend_id as cliendId
+        from xx_kfkz_v2
+        <where>
+            cliend_id = #{cliendId}
+        </where>
+    </select>
+
+
+</mapper>
