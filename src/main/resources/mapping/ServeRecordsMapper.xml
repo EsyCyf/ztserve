@@ -8,15 +8,40 @@
     private String isSolve;
     private String fiestResponse;
     -->
-    <select id="getServiceRecordsAll" resultType="com.ares.ztserve.Model.ServiceRecords">
-        select is_describe as isDescribe,
-               is_solve as isSolve,
-               first_response as fiestResponse,
-               cliend_id as cliendId
+    <resultMap id="getClientRecordsRM" type="com.ares.ztserve.Model.ServiceRecords">
+        <result property="cliendId" column="cliend_id" />
+        <result property="isSolve" column="is_solve" />
+        <result property="isDescribe" column="is_describe" />
+        <result property="fiestResponse" column="first_response_month" />
+    </resultMap>
+
+    <select id="getServiceRecordsAll" resultMap="getClientRecordsRM">
+        select is_describe,
+               is_solve,
+               first_response_month,
+               cliend_id
         from xx_kfkz_v2
     </select>
 
-    <select id="getServiceRecordsById" resultType="com.ares.ztserve.Model.ServiceRecords">
+    <!--<select id="getServiceRecordsAll" resultMap="getClientRecordsRM">
+        select is_describe as isDescribe,
+               is_solve as isSolve,
+               first_response_month as fiestResponse,
+               cliend_id as cliendId
+        from xx_kfkz_v2
+    </select>-->
+
+    <select id="getServiceRecordsById" resultMap="getClientRecordsRM">
+        select is_describe,
+               is_solve,
+               first_response_month,
+               cliend_id
+        from xx_kfkz_v2
+        <where>
+            cliend_id = #{cliendId}
+        </where>
+    </select>
+    <!--<select id="getServiceRecordsById" resultType="com.ares.ztserve.Model.ServiceRecords">
         select is_describe as isDescribe,
                is_solve as isSolve,
                first_response as fiestResponse,
@@ -25,7 +50,7 @@
         <where>
             cliend_id = #{cliendId}
         </where>
-    </select>
+    </select>-->
 
 
 </mapper>
