@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ares.ztserve.Mapper.ClientSatisfactionMapper">
+    <resultMap id="getClientSatisfactionRM" type="com.ares.ztserve.Model.ClientSatisfaction">
+        <result property="cstId" column="cst_id"/>
+        <result property="clientId" column="client_id"/>
+        <result property="type" column="type"/>
+        <result property="satisDegree" column="satis_degree"/>
+        <result property="satisDesc" column="satis_desc"/>
+        <result property="feedback" column="feedback"/>
+    </resultMap>
+
+    <parameterMap id="insertClientSatisfactionPM" type="com.ares.ztserve.Model.ClientSatisfaction">
+        <parameter property="cstId" resultMap="getClientSatisfactionRM"/>
+        <parameter property="clientId" resultMap="getClientSatisfactionRM"/>
+        <parameter property="type" resultMap="getClientSatisfactionRM"/>
+        <parameter property="satisDegree" resultMap="getClientSatisfactionRM"/>
+        <parameter property="satisDesc" resultMap="getClientSatisfactionRM"/>
+        <parameter property="feedback" resultMap="getClientSatisfactionRM"/>
+    </parameterMap>
+
+    <select id="getClientSatisfactionId" resultType="int">
+        select xx_cst_s.NEXTVAL as cstId
+        from dual
+    </select>
+
+    <select id="getClientSatisfactionAll" resultMap="getClientSatisfactionRM">
+        select cst_id, client_id, type, satis_degree, satis_desc, feedback
+        from xx_cst
+    </select>
+
+    <insert id="insertClientSatisfaction" parameterType="com.ares.ztserve.Model.ClientSatisfaction">
+        insert into xx_cst
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cstId != null">
+                cst_id,
+            </if>
+            <if test="clientId != null">
+                client_id,
+            </if>
+
+            <if test="type != null">
+                type,
+            </if>
+            <if test="satisDegree != null">
+                satis_degree,
+            </if>
+            <if test="satisDesc != null">
+                satis_desc,
+            </if>
+            <if test="feedback != null">
+                feedback,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cstId != null">
+                #{cstId},
+            </if>
+            <if test="clientId != null">
+                #{clientId},
+            </if>
+            <if test="type != null">
+                #{type},
+            </if>
+            <if test="satisDegree != null">
+                #{satisDegree},
+            </if>
+            <if test="satisDesc != null">
+                #{satisDesc},
+            </if>
+            <if test="feedback != null">
+                #{feedback},
+            </if>
+        </trim>
+
+    </insert>
+
+
+</mapper>

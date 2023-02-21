@@ -1,9 +1,16 @@
 package com.ares.ztserve.Controller;
 
+import com.ares.ztserve.Model.ClientSatisfaction;
 import com.ares.ztserve.Model.ServiceRecords;
+import com.ares.ztserve.Service.impl.ClientSatisfactionServiceImpl;
 import com.ares.ztserve.Service.impl.ServeRecordsServiceImpl;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.w3c.dom.ls.LSException;
 
 import java.util.List;
 
@@ -17,20 +24,41 @@ import java.util.List;
 public class AppController {
     @Autowired
     private ServeRecordsServiceImpl serveRecordsService;
+    @Autowired
+    private ClientSatisfactionServiceImpl clientSatisfactionService;
 
+    @ApiOperation(value = "测试用")
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test(){
+    public String test() {
         return "hello";
     }
 
-    @RequestMapping(value = "/getRecordsAll",method = RequestMethod.GET)
-    public List<ServiceRecords> getServiceRecordsAll(){
+    @RequestMapping(value = "/getRecordsAll", method = RequestMethod.GET)
+    public List<ServiceRecords> getServiceRecordsAll() {
         return serveRecordsService.getServiceRecordsAll();
     }
 
-    @RequestMapping(value = "/getRecordsById",method = RequestMethod.GET)
-    public List<ServiceRecords> getServiceRecordsById(@RequestParam String clientId){
+    @RequestMapping(value = "/getRecordsById", method = RequestMethod.GET)
+    public List<ServiceRecords> getServiceRecordsById(@RequestParam String clientId) {
         return serveRecordsService.getServiceRecordsById(clientId);
+    }
+
+    @ApiOperation(value = "获取用户满意数据All")
+    @RequestMapping(value = "/getClientSatisAll", method = RequestMethod.GET)
+    public List<ClientSatisfaction> getClientSatisfactionAll() {
+        return clientSatisfactionService.getClientSatisfactionAll();
+    }
+
+    @ApiOperation(value = "新增用户满意数据，后台表：xx_cst")
+    @RequestMapping(value = "/insertClientSatis", method = RequestMethod.POST)
+    public int insertClientSatisfaction(
+            @ApiParam("客户id") @RequestParam("clientId") String clientId,
+            @ApiParam("满意度") @RequestParam("stDegree") int stDegree,
+            @ApiParam("满意度描述") @RequestParam("stDesc") String stDesc,
+            @ApiParam("问题分类") @RequestParam("type") String type,
+            @ApiParam("反馈") @RequestParam("feedback") String feedback
+    ) {
+        return clientSatisfactionService.insertClientSatisfaction(clientId, type, stDegree, stDesc, feedback);
     }
 
 
