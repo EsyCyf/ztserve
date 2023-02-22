@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    #url: jdbc:oracle:thin:@192.168.0.171:1521/HCP19CDEV
+    url: jdbc:oracle:thin:@192.168.0.210:1521/HCPPROD
+    username: hcp
+    password: hcp
+  #type-aliases-package=
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+#日志配置
+logging:
+  config: classpath:log4j2.xml
+server:
+  port: 8081
