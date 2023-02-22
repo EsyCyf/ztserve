@@ -1,6 +1,6 @@
-package com.ares.ztserve.Service;
+package com.ares.ztserve.service;
 
-import com.ares.ztserve.Model.ClientSatisfaction;
+import com.ares.ztserve.model.ClientSatisfaction;
 
 import java.util.List;
 

@@ -15,4 +15,4 @@ mybatis:
 logging:
   config: classpath:log4j2-test.xml
 server:
-  port: 8081
+  port: 8082

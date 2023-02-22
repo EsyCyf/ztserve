@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ares.ztserve.Mapper.ServeRecordsMapper">
+<mapper namespace="com.ares.ztserve.mapper.ServeRecordsMapper">
     <!--
     private String cliendId;
     private String isDescribe;
     private String isSolve;
     private String fiestResponse;
     -->
-    <resultMap id="getClientRecordsRM" type="com.ares.ztserve.Model.ServiceRecords">
+    <resultMap id="getClientRecordsRM" type="com.ares.ztserve.model.ServiceRecords">
         <result property="cliendId" column="cliend_id" />
         <result property="isSolve" column="is_solve" />
         <result property="isDescribe" column="is_describe" />
@@ -41,7 +41,7 @@
             cliend_id = #{cliendId}
         </where>
     </select>
-    <!--<select id="getServiceRecordsById" resultType="com.ares.ztserve.Model.ServiceRecords">
+    <!--<select id="getServiceRecordsById" resultType="com.ares.ztserve.model.ServiceRecords">
         select is_describe as isDescribe,
                is_solve as isSolve,
                first_response as fiestResponse,
