@@ -13,6 +13,6 @@ mybatis:
   mapper-locations: classpath:mapping/*.xml
 #日志配置
 logging:
-  config: classpath:log4j2.xml
+  config: classpath:log4j2-prod.xml
 server:
   port: 8081
