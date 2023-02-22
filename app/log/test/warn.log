@@ -1,1 +1,0 @@
-[2023-02-22 10:45:03.718][WARN ][29][com.zaxxer.hikari.util.DriverDataSource.<init>:70] Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
