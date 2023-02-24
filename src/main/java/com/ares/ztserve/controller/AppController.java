@@ -1,16 +1,13 @@
-package com.ares.ztserve.Controller;
+package com.ares.ztserve.controller;
 
-import com.ares.ztserve.Model.ClientSatisfaction;
-import com.ares.ztserve.Model.ServiceRecords;
-import com.ares.ztserve.Service.impl.ClientSatisfactionServiceImpl;
-import com.ares.ztserve.Service.impl.ServeRecordsServiceImpl;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
+import com.ares.ztserve.model.ClientSatisfaction;
+import com.ares.ztserve.model.ServiceRecords;
+import com.ares.ztserve.service.impl.ClientSatisfactionServiceImpl;
+import com.ares.ztserve.service.impl.ServeRecordsServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.ls.LSException;
 
 import java.util.List;
 

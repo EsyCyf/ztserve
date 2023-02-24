@@ -1,6 +1,6 @@
-package com.ares.ztserve.Mapper;
+package com.ares.ztserve.mapper;
 
-import com.ares.ztserve.Model.ServiceRecords;
+import com.ares.ztserve.model.ServiceRecords;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
