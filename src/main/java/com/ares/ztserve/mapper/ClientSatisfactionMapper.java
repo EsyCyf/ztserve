@@ -1,6 +1,6 @@
-package com.ares.ztserve.mapper;
+package com.ares.ztserve.Mapper;
 
-import com.ares.ztserve.model.ClientSatisfaction;
+import com.ares.ztserve.Model.ClientSatisfaction;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

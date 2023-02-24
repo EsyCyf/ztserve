@@ -1,8 +1,8 @@
-package com.ares.ztserve.service.impl;
+package com.ares.ztserve.Service.impl;
 
-import com.ares.ztserve.mapper.ClientSatisfactionMapper;
-import com.ares.ztserve.model.ClientSatisfaction;
-import com.ares.ztserve.service.ClientSatisfactionService;
+import com.ares.ztserve.Mapper.ClientSatisfactionMapper;
+import com.ares.ztserve.Model.ClientSatisfaction;
+import com.ares.ztserve.Service.ClientSatisfactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

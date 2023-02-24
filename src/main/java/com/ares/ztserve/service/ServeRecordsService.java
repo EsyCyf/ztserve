@@ -1,6 +1,6 @@
-package com.ares.ztserve.service;
+package com.ares.ztserve.Service;
 
-import com.ares.ztserve.model.ServiceRecords;
+import com.ares.ztserve.Model.ServiceRecords;
 
 import java.util.List;
 

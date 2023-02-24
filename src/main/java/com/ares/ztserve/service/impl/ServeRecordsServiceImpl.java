@@ -1,8 +1,8 @@
-package com.ares.ztserve.service.impl;
+package com.ares.ztserve.Service.impl;
 
-import com.ares.ztserve.mapper.ServeRecordsMapper;
-import com.ares.ztserve.model.ServiceRecords;
-import com.ares.ztserve.service.ServeRecordsService;
+import com.ares.ztserve.Mapper.ServeRecordsMapper;
+import com.ares.ztserve.Model.ServiceRecords;
+import com.ares.ztserve.Service.ServeRecordsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

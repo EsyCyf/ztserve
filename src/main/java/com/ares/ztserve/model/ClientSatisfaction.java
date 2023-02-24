@@ -1,4 +1,4 @@
-package com.ares.ztserve.model;
+package com.ares.ztserve.Model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
