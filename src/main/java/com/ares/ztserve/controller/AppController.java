@@ -51,7 +51,7 @@ public class AppController {
     public int insertClientSatisfaction(
             @ApiParam("客户id") @RequestParam("clientId") String clientId,
             @ApiParam("满意度") @RequestParam("stDegree") int stDegree,
-            @ApiParam("满意度描述") @RequestParam(value = "stDesc",required = false) String stDesc,
+            @ApiParam("满意度描述") @RequestParam(value = "stDesc") String stDesc,
             @ApiParam("问题分类") @RequestParam("type") String type,
             @ApiParam("反馈") @RequestParam(value = "feedback",required = false) String feedback
     ) {
