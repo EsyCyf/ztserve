@@ -1,14 +1,14 @@
 package com.ares.ztserve.utils;
 
+import com.ares.ztserve.model.Client;
+import com.ares.ztserve.model.ClientHolder;
 import com.ares.ztserve.model.User;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * @author ESy
@@ -18,62 +18,55 @@ import java.util.UUID;
  * 验证token:checkToken(String token)
  */
 public class TokenUtil {
-    public static void main(String[] args) {
-        User u = new User();
-        u.setUsername("1765");
-        System.out.println(createToken(u));
-    }
-
-    /*过期时间*/
-    private static final long EXPIRE_TIME = 10 * 60 * 60 * 1000;
-
-    /*密钥*/
-    private static final String PRIVATE_KEY = "abcde";
-
+    /**
+     * 过期时间，单位毫秒，例如10小时：10*60*60*1000
+     */
+    private static final long EXPIRE_TIME= 60*60*1000;
+    /**
+     * 密钥盐
+     */
+    private static final String TOKEN_SECRET="esy";
     /**
      * 签名生成
-     *
-     * @param user
-     * @return String token
+     * @param client
+     * @return
      */
-    public static String createToken(User user) {
-        JwtBuilder jwtBuilder = Jwts.builder();
-        String jwtToken = jwtBuilder
-                //header
-                .setHeaderParam("typ","JWT")
-                .setHeaderParam("alg","HS256")
-                //payload
-                .claim("username",user.getUsername())
-                .claim("role",user.getPassword())
-                .setSubject("admin-test")
-                .setExpiration(new Date(System.currentTimeMillis()+EXPIRE_TIME))
-                .setId(UUID.randomUUID().toString())
-                //signature
-                .signWith(SignatureAlgorithm.HS256,PRIVATE_KEY)
-                .compact();
-
-        return jwtToken;
-    }
-
-    /**
-     * 验证 token信息 是否正确
-     *
-     * @param token 被解析 JWT
-     * @return boolean 是否正确
-     */
-    public static boolean checkToken(String token) {
-        //获取签名密钥
-        //String key = userEntity.getUserPassword();
-        //获取DefaultJwtParser
+    public static String sign(Client client){
+        String token = null;
         try {
-            Jwts.parser()
-                    /*设置 密钥*/
-                    .setSigningKey(PRIVATE_KEY)
-                    /*设置需要解析的 token*/
-                    .parseClaimsJws(token).getBody();
+            token = JWT.create()
+                    .withIssuer("auth0")
+                    .withClaim("customerNo", client.getCustomerNo())
+                    .withClaim("emailAddress", client.getEmailAddress())
+                    .withClaim("userRole", client.getUserRole())
+                    .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRE_TIME))
+                    // 使用了HMAC256加密算法。
+                    .sign(Algorithm.HMAC256(TOKEN_SECRET));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return token;
+    }
+    /**
+     * 签名验证
+     * @param token
+     * @return
+     */
+    public static boolean verify(String token,Client client){
+        try {
+            JWTVerifier verifier = JWT.require(Algorithm.HMAC256(TOKEN_SECRET)).withIssuer("auth0").build();
+            DecodedJWT jwt = verifier.verify(token);
+            System.out.println("认证通过：");
+            System.out.println("customerNo: " + jwt.getClaim("customerNo").asString());
+            System.out.println("过期时间：      " + jwt.getExpiresAt());
+            client.setCustomerNo(jwt.getClaim("customerNo").asString());
+            client.setEmailAddress(jwt.getClaim("emailAddress").asString());
+            client.setUserRole(jwt.getClaim("userRole").asString());
             return true;
-        } catch (Exception e) {
+        } catch (Exception e){
             return false;
         }
     }
+
+
 }

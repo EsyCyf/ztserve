@@ -17,5 +17,11 @@ public interface ServeRecordsService {
      * 根据ClientId返回客服数据
      * */
     List<ServiceRecords> getServiceRecordsById(String clientId);
+    /**
+     * 根据token自动带入客户信息
+     * @param firstResponse String
+     * @return List
+     */
+    List<ServiceRecords> getMyRecordsByDate();
 
 }

@@ -1,5 +1,7 @@
 package com.ares.ztserve;
 
+import org.junit.jupiter.api.Test;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -40,5 +42,11 @@ public class test {
         String context = "cyf1997";
         String md5Context = getMd5(context);
         System.out.println(md5Context);
+    }
+
+    @Test
+    public void test(){
+        boolean contains = "/login/APLUS/1".contains("/login");
+        System.out.println(contains);
     }
 }

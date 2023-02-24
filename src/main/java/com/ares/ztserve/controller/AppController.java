@@ -58,5 +58,10 @@ public class AppController {
         return clientSatisfactionService.insertClientSatisfaction(clientId, type, stDegree, stDesc, feedback);
     }
 
+    @RequestMapping(value = "/getMy", method = RequestMethod.GET)
+    public List<ServiceRecords> getMy() {
+        return serveRecordsService.getMyRecordsByDate();
+    }
+
 
 }

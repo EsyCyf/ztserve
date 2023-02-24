@@ -1,9 +1,16 @@
 package com.ares.ztserve.controller;
 
+import com.ares.ztserve.model.Client;
 import com.ares.ztserve.model.User;
+import com.ares.ztserve.service.LoginService;
+import com.ares.ztserve.service.impl.LoginServiceImpl;
 import com.ares.ztserve.utils.TokenUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author ESy
@@ -12,20 +19,25 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/login")
+@RequestMapping
 public class LoginController {
-    private final String USERNAME = "APLUS";
-    private final String PASSWORD = "1";
+    @Autowired
+    private LoginServiceImpl loginService;
 
-    @RequestMapping(value = "/getUser", method = RequestMethod.POST)
-    public User login(@RequestBody User user) {
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
-        if (USERNAME.equals(user.getUsername()) && PASSWORD.equals(user.getPassword())) {
-            user.setToken(TokenUtil.createToken(user));
-            System.out.println("login success");
+    @ApiOperation(value = "登录接口，返回token")
+    @RequestMapping(value = "/login/{key}", method = RequestMethod.GET)
+    public Map<String, String> loginByKey(@PathVariable String key) {
+        Map<String, String> map = new HashMap<String, String>();
+        Client client = loginService.getClientInfo(key);
+        if (null != client.getCustomerNo() &&
+                null != client.getUserRole() &&
+                null != client.getEmailAddress()) {
+            map.put("token", TokenUtil.sign(client));
+            map.put("msg", "success");
+            return map;
         }
-        return user;
+        map.put("msg", "fail");
+        return map;
     }
 
 }

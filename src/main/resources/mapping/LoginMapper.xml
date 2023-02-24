@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ares.ztserve.mapper.LoginMapper">
+    <!--private String customerNo;
+    private String emailAddress;
+    private String userRole;-->
+    <resultMap id="getClientInfoRM" type="com.ares.ztserve.model.Client">
+        <result property="customerNo" column="custom_no"/>
+        <result property="emailAddress" column="email"/>
+        <result property="userRole" column="user_role"/>
+    </resultMap>
+
+    <select id="getClientByKey" resultMap="getClientInfoRM">
+        select b.custom_no,
+               b.email,
+               b.user_role
+        from xx_personnel_base b
+        where b.usern_password = #{key}
+    </select>
+
+
+</mapper>

@@ -20,5 +20,13 @@ public interface ServeRecordsMapper {
      * */
     List<ServiceRecords> getServiceRecordsById(String clientId);
 
+    /**
+     * 根据token自动带入客户信息
+     * @param firstResponse String
+     * @return List
+     *
+     */
+    List<ServiceRecords> getMyRecords(String customerNo,String emailAddress,String userRole);
+
 
 }

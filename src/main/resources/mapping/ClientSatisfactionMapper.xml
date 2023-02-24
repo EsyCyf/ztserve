@@ -52,6 +52,7 @@
             <if test="feedback != null">
                 feedback,
             </if>
+                create_date,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="cstId != null">
@@ -72,6 +73,7 @@
             <if test="feedback != null">
                 #{feedback},
             </if>
+                sysdate,
         </trim>
 
     </insert>
