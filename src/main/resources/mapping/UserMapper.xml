@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ares.ztserve.mapper.UserMapper">
+    <!--private String account;
+    private String password;
+    private String role;-->
+    <resultMap id="getUserInfoRM" type="com.ares.ztserve.model.User">
+        <result property="account" column="email" />
+        <result property="password" column="user_password" />
+        <result property="role" column="user_role" />
+    </resultMap>
+
+    <select id="findUserByName" resultMap="getUserInfoRM">
+        select
+        b.email,
+        b.user_role,
+        b.user_password
+        from xx_personnel_base b
+        <where>
+            and b.email = #{username}
+        </where>
+    </select>
+
+</mapper>
