@@ -1,7 +1,9 @@
 package com.ares.ztserve.controller;
 
+import com.ares.ztserve.model.Msg;
 import com.ares.ztserve.model.User;
 import com.ares.ztserve.service.impl.UserServiceImpl;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +36,12 @@ public class LoginController {
             return token;
         }
         return "登录失败";
+    }
+
+    @RequiresPermissions("99")
+    @GetMapping("/login1")
+    public Msg index(@RequestHeader String token){
+        System.out.println("token: " + token);
+        return Msg.success("yes");
     }
 }
