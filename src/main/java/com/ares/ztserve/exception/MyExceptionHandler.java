@@ -17,7 +17,7 @@ public class MyExceptionHandler {
     @ExceptionHandler(value = AuthorizationException.class)
     @ResponseBody
     public Msg handleException(AuthorizationException e) {
-        Msg msg=Msg.denyAccess("权限不足呀！！！！！");
+        Msg msg=Msg.denyAccess("权限不足");
         return msg;
     }
 }

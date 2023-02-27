@@ -47,7 +47,7 @@ public class AppController {
     @ApiOperation(value = "返回当前用户权限下的维护记录")
     @RequestMapping(value = "/getMyRecords", method = RequestMethod.GET)
     public List<ServiceRecords> getMyServiceRecords(
-            @ApiParam("日月，如2023/02，不传入则为全部") @RequestParam(value = "firstResponse", required = false) String firstResponse,
+            @ApiParam("年月，如2023/02，不传入则为全部") @RequestParam(value = "firstResponse", required = false) String firstResponse,
             @RequestHeader String token) {
         String username = stringRedisTemplate.opsForValue().get(token);
         Client client = clientService.findClientByEmail(username);
