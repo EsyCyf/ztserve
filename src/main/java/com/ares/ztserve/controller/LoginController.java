@@ -29,7 +29,13 @@ public class LoginController {
     @ApiOperation(value = "登录接口，返回状态码+token，账号密码对应xx_personnel_base.email和user_password")
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public Msg loginByname(@RequestParam("username") String username, @RequestParam("password") String password) {
-        User user = userService.findUserByName(username);
+        User user = new User();
+        try {
+            user = userService.findUserByName(username);
+        }catch (Exception e) {
+            return Msg.fail("登录失败");
+        }
+
         System.out.println("密码是："+user.getPassword());
         if (user.getPassword().equals(password)) {
             System.out.println("登录成功：username： " + username + " password: " + password);

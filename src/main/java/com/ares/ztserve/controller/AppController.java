@@ -1,6 +1,7 @@
 package com.ares.ztserve.controller;
 
 import com.ares.ztserve.model.Client;
+import com.ares.ztserve.model.Msg;
 import com.ares.ztserve.model.ServiceRecords;
 import com.ares.ztserve.service.impl.ClientSatisfactionServiceImpl;
 import com.ares.ztserve.service.impl.ClientServiceImpl;
@@ -31,7 +32,7 @@ public class AppController {
     private StringRedisTemplate stringRedisTemplate;
     @ApiOperation(value = "新增用户满意数据(用户id自动带出)，后台表：xx_cst")
     @RequestMapping(value = "/insertClientSatis", method = RequestMethod.POST)
-    public int insertClientSatisfaction(
+    public Msg insertClientSatisfaction(
 //            @ApiParam("客户id") @RequestParam("clientId") String clientId,
             @ApiParam("满意度") @RequestParam("stDegree") int stDegree,
             @ApiParam("满意度描述") @RequestParam(value = "stDesc") String stDesc,
@@ -40,8 +41,11 @@ public class AppController {
             @RequestHeader String token
     ) {
         String username = stringRedisTemplate.opsForValue().get(token);
+        int id = clientSatisfactionService.insertClientSatisfaction(username, type, stDegree, stDesc, feedback);
+        Msg msg = Msg.success("新增成功");
+        msg.add("id",id);
         //Client client = clientService.findClientByEmail(username);
-        return clientSatisfactionService.insertClientSatisfaction(username, type, stDegree, stDesc, feedback);
+        return msg;
     }
 
     @ApiOperation(value = "返回当前用户权限下的维护记录")

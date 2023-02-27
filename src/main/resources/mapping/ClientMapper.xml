@@ -16,6 +16,7 @@
         from xx_personnel_base b
         <where>
             and b.user_name = #{userName}
+            and b.is_active='Y'
         </where>
     </select>
 
