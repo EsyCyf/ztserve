@@ -160,6 +160,7 @@
     </profiles>
 
     <build>
+        <finalName>ztserve-esy-${environment}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
