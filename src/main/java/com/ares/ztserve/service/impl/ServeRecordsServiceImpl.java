@@ -26,4 +26,11 @@ public class ServeRecordsServiceImpl implements ServeRecordsService {
     public List<ServiceRecords> getServiceRecordsById(String clientId) {
         return serveRecordsMapper.getServiceRecordsById(clientId);
     }
+
+    @Override
+    public List<ServiceRecords> getServeRecords(String customerNo, String emailAddress, String userRole, String firstResponse) {
+        return serveRecordsMapper.getServeRecords(customerNo, emailAddress, userRole, firstResponse);
+    }
+
+
 }

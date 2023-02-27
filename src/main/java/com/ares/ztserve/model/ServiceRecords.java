@@ -16,8 +16,8 @@ import lombok.Data;
  */
 @Data
 public class ServiceRecords {
-    private String cliendId;
+    private String clientId;
     private String isDescribe;
     private String isSolve;
-    private String fiestResponse;
+    private String firstResponse;
 }

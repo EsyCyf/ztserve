@@ -18,4 +18,12 @@ public interface ServeRecordsService {
      * */
     List<ServiceRecords> getServiceRecordsById(String clientId);
 
+    /**
+     * 获取维护记录
+     * @param firstResponse 月份2022/01
+     * @return
+     */
+    List<ServiceRecords> getServeRecords(String customerNo,String emailAddress,String userRole,String firstResponse);
+
+
 }

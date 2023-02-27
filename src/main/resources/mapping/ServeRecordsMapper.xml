@@ -3,23 +3,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ares.ztserve.mapper.ServeRecordsMapper">
     <!--
-    private String cliendId;
+    private String clientId;
     private String isDescribe;
     private String isSolve;
-    private String fiestResponse;
+    private String firstResponse;
     -->
     <resultMap id="getClientRecordsRM" type="com.ares.ztserve.model.ServiceRecords">
-        <result property="cliendId" column="cliend_id" />
-        <result property="isSolve" column="is_solve" />
-        <result property="isDescribe" column="is_describe" />
-        <result property="fiestResponse" column="first_response_month" />
+        <result property="clientId" column="client_id"/>
+        <result property="isSolve" column="is_solve"/>
+        <result property="isDescribe" column="is_describe"/>
+        <result property="firstResponse" column="first_response_month"/>
     </resultMap>
 
     <select id="getServiceRecordsAll" resultMap="getClientRecordsRM">
         select is_describe,
                is_solve,
                first_response_month,
-               cliend_id
+               client_id
         from xx_kfkz_v2
     </select>
 
@@ -33,12 +33,12 @@
 
     <select id="getServiceRecordsById" resultMap="getClientRecordsRM">
         select is_describe,
-               is_solve,
-               first_response_month,
-               cliend_id
+        is_solve,
+        first_response_month,
+        client_id
         from xx_kfkz_v2
         <where>
-            cliend_id = #{cliendId}
+            client_id = #{clientId}
         </where>
     </select>
     <!--<select id="getServiceRecordsById" resultType="com.ares.ztserve.model.ServiceRecords">
@@ -51,6 +51,32 @@
             cliend_id = #{cliendId}
         </where>
     </select>-->
+
+    <select id="getServeRecords" resultMap="getClientRecordsRM">
+        select is_describe,
+        is_solve,
+        first_response_month,
+        client_id
+        from xx_kfkz_v2
+        /*private String customerNo;
+        private String emailAddress;
+        private String userRole;*/
+        <where>
+            <if test="userRole==1">
+                and custom_no = #{customerNo}
+                and email = #{emailAddress}
+            </if>
+            <if test="userRole==2">
+                and custom_no = #{customerNo}
+            </if>
+            <if test="userRole==99">
+                and 1=1
+            </if>
+            <if test="firstResponse!=null">
+                and first_response_month = #{firstResponse}
+            </if>
+        </where>
+    </select>
 
 
 </mapper>
