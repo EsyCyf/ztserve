@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 public class Client {
-    private String email;
+    private String userName;
     private String customNo;
     private String role;
 }

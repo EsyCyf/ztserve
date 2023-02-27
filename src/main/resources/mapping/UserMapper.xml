@@ -6,19 +6,19 @@
     private String password;
     private String role;-->
     <resultMap id="getUserInfoRM" type="com.ares.ztserve.model.User">
-        <result property="account" column="email" />
+        <result property="account" column="user_name" />
         <result property="password" column="user_password" />
         <result property="role" column="user_role" />
     </resultMap>
 
     <select id="findUserByName" resultMap="getUserInfoRM">
         select
-        b.email,
+        b.user_name,
         b.user_role,
         b.user_password
         from xx_personnel_base b
         <where>
-            and b.email = #{username}
+            and b.user_name = #{username}
         </where>
     </select>
 

@@ -22,5 +22,5 @@ public interface ClientSatisfactionService {
     /**
      * 新增用户满意度
      */
-    int insertClientSatisfaction(String email, String type, int satisDegree, String satisDesc, String feedback);
+    int insertClientSatisfaction(String userName, String type, int satisDegree, String satisDesc, String feedback);
 }

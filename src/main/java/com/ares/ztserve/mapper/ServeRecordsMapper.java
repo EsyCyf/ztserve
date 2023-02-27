@@ -23,12 +23,12 @@ public interface ServeRecordsMapper {
     /**
      * 获取记录
      * @param customerNo
-     * @param emailAddress
+     * @param userName
      * @param userRole
      * @param firstResponse
      * @return
      */
-    List<ServiceRecords> getServeRecords(String customerNo,String emailAddress,String userRole,String firstResponse);
+    List<ServiceRecords> getServeRecords(String customerNo,String userName,String userRole,String firstResponse);
 
 
 

@@ -28,9 +28,9 @@ public class ClientSatisfactionServiceImpl implements ClientSatisfactionService 
     }
 
     @Override
-    public int insertClientSatisfaction(String email, String type, int satisDegree, String satisDesc, String feedback) {
+    public int insertClientSatisfaction(String userName, String type, int satisDegree, String satisDesc, String feedback) {
         int cstId = clientSatisfactionMapper.getClientSatisfactionId();
-        clientSatisfactionMapper.insertClientSatisfaction(cstId, email, type, satisDegree, satisDesc, feedback);
+        clientSatisfactionMapper.insertClientSatisfaction(cstId, userName, type, satisDegree, satisDesc, feedback);
         return cstId;
     }
 }

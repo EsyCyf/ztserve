@@ -59,12 +59,12 @@
         client_id
         from xx_kfkz_v2
         /*private String customerNo;
-        private String emailAddress;
+        private String userName;
         private String userRole;*/
         <where>
             <if test="userRole==1">
                 and custom_no = #{customerNo}
-                and email = #{emailAddress}
+                and email = #{userName}
             </if>
             <if test="userRole==2">
                 and custom_no = #{customerNo}

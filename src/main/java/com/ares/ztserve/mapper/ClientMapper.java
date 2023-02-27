@@ -11,8 +11,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ClientMapper {
     /**
      *
-     * @param email
+     * @param userName
      * @return
      */
-    Client findClientByEmail(String email);
+    Client findClientByName(String userName);
 }

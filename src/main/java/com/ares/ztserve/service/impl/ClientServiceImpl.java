@@ -15,7 +15,7 @@ public class ClientServiceImpl implements ClientService {
     @Autowired
     private ClientMapper clientMapper;
     @Override
-    public Client findClientByEmail(String email) {
-        return clientMapper.findClientByEmail(email);
+    public Client findClientByName(String email) {
+        return clientMapper.findClientByName(email);
     }
 }

@@ -7,5 +7,5 @@ import com.ares.ztserve.model.Client;
  * @date 2023/2/27 027 9:37
  */
 public interface ClientService {
-    Client findClientByEmail(String email);
+    Client findClientByName(String email);
 }
