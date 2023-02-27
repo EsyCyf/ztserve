@@ -4,21 +4,13 @@
 <mapper namespace="com.ares.ztserve.mapper.ClientSatisfactionMapper">
     <resultMap id="getClientSatisfactionRM" type="com.ares.ztserve.model.ClientSatisfaction">
         <result property="cstId" column="cst_id"/>
-        <result property="clientId" column="client_id"/>
+        <result property="email" column="email"/>
         <result property="type" column="type"/>
         <result property="satisDegree" column="satis_degree"/>
         <result property="satisDesc" column="satis_desc"/>
         <result property="feedback" column="feedback"/>
     </resultMap>
 
-    <parameterMap id="insertClientSatisfactionPM" type="com.ares.ztserve.model.ClientSatisfaction">
-        <parameter property="cstId" resultMap="getClientSatisfactionRM"/>
-        <parameter property="clientId" resultMap="getClientSatisfactionRM"/>
-        <parameter property="type" resultMap="getClientSatisfactionRM"/>
-        <parameter property="satisDegree" resultMap="getClientSatisfactionRM"/>
-        <parameter property="satisDesc" resultMap="getClientSatisfactionRM"/>
-        <parameter property="feedback" resultMap="getClientSatisfactionRM"/>
-    </parameterMap>
 
     <select id="getClientSatisfactionId" resultType="int">
         select xx_cst_s.NEXTVAL as cstId
@@ -26,7 +18,7 @@
     </select>
 
     <select id="getClientSatisfactionAll" resultMap="getClientSatisfactionRM">
-        select cst_id, client_id, type, satis_degree, satis_desc, feedback
+        select cst_id, email, type, satis_degree, satis_desc, feedback
         from xx_cst
     </select>
 
@@ -36,8 +28,8 @@
             <if test="cstId != null">
                 cst_id,
             </if>
-            <if test="clientId != null">
-                client_id,
+            <if test="email != null">
+                email,
             </if>
 
             <if test="type != null">
@@ -52,13 +44,14 @@
             <if test="feedback != null">
                 feedback,
             </if>
+            create_date,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="cstId != null">
                 #{cstId},
             </if>
-            <if test="clientId != null">
-                #{clientId},
+            <if test="email != null">
+                #{email},
             </if>
             <if test="type != null">
                 #{type},
@@ -72,6 +65,7 @@
             <if test="feedback != null">
                 #{feedback},
             </if>
+            sysdate,
         </trim>
 
     </insert>

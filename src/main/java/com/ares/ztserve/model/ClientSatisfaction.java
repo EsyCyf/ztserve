@@ -22,8 +22,8 @@ import lombok.Data;
 public class ClientSatisfaction {
     @ApiModelProperty("主键")
     private int cstId;
-    @ApiModelProperty("客户id")
-    private String clientId;
+    @ApiModelProperty("客户邮箱")
+    private String email;
     @ApiModelProperty("问题分类")
     private String type;
     @ApiModelProperty("满意度")

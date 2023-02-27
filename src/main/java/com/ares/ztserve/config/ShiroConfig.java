@@ -45,10 +45,20 @@ public class ShiroConfig {
 
         //要拦截的路径放在map里面
         Map<String,String> filterMap=new LinkedHashMap<String,String>();
-        filterMap.put("/login","anon");  //放行login接口
-        filterMap.put("/swagger-ui.html#/**","anon");  //放行login接口
-        filterMap.put("/logout","anon");    //放行logout接口
-        filterMap.put("/**","auth");    //拦截所有路径, 它自动会跑到 AuthFilter这个自定义的过滤器里面
+        //放行login接口
+        filterMap.put("/login","anon");
+        filterMap.put("/logout","anon");
+
+        //放行swagger接口
+
+        filterMap.put("/docs", "anon");
+        filterMap.put("/swagger-ui.html", "anon");
+        filterMap.put("/webjars/springfox-swagger-ui/**", "anon");
+        filterMap.put("/swagger-resources/**", "anon");
+        filterMap.put("/v2/api-docs", "anon");
+
+        //拦截所有路径, 它自动会跑到 AuthFilter这个自定义的过滤器里面
+        filterMap.put("/**","auth");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
         return shiroFilterFactoryBean;
     }

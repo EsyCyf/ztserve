@@ -43,6 +43,7 @@ public class AppController {
         return serveRecordsService.getServiceRecordsAll();
     }
 
+    @ApiOperation(value = "根据client_id获取维护记录")
     @RequestMapping(value = "/getRecordsById", method = RequestMethod.GET)
     public List<ServiceRecords> getServiceRecordsById(@RequestParam String clientId) {
         return serveRecordsService.getServiceRecordsById(clientId);
@@ -54,16 +55,19 @@ public class AppController {
         return clientSatisfactionService.getClientSatisfactionAll();
     }
 
-    @ApiOperation(value = "新增用户满意数据，后台表：xx_cst")
+    @ApiOperation(value = "新增用户满意数据(用户id自动带出)，后台表：xx_cst")
     @RequestMapping(value = "/insertClientSatis", method = RequestMethod.POST)
     public int insertClientSatisfaction(
-            @ApiParam("客户id") @RequestParam("clientId") String clientId,
+//            @ApiParam("客户id") @RequestParam("clientId") String clientId,
             @ApiParam("满意度") @RequestParam("stDegree") int stDegree,
             @ApiParam("满意度描述") @RequestParam(value = "stDesc") String stDesc,
             @ApiParam("问题分类") @RequestParam("type") String type,
-            @ApiParam("反馈") @RequestParam(value = "feedback", required = false) String feedback
+            @ApiParam("反馈") @RequestParam(value = "feedback", required = false) String feedback,
+            @RequestHeader String token
     ) {
-        return clientSatisfactionService.insertClientSatisfaction(clientId, type, stDegree, stDesc, feedback);
+        String username = stringRedisTemplate.opsForValue().get(token);
+        //Client client = clientService.findClientByEmail(username);
+        return clientSatisfactionService.insertClientSatisfaction(username, type, stDegree, stDesc, feedback);
     }
 
     @ApiOperation(value = "返回当前用户权限下的维护记录")
