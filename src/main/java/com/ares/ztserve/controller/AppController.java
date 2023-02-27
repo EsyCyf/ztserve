@@ -1,12 +1,10 @@
 package com.ares.ztserve.controller;
 
 import com.ares.ztserve.model.Client;
-import com.ares.ztserve.model.ClientSatisfaction;
 import com.ares.ztserve.model.ServiceRecords;
 import com.ares.ztserve.service.impl.ClientSatisfactionServiceImpl;
 import com.ares.ztserve.service.impl.ClientServiceImpl;
 import com.ares.ztserve.service.impl.ServeRecordsServiceImpl;
-import com.ares.ztserve.service.impl.UserServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +15,10 @@ import java.util.List;
 
 /**
  * @author ESy
- * @date 2023/2/15 015 16:03
+ * @date 2023/2/27 027 11:06
  */
 @RestController
-@RequestMapping(value = "/serve")
+@RequestMapping(value = "/app")
 @CrossOrigin
 public class AppController {
     @Autowired
@@ -31,30 +29,6 @@ public class AppController {
     private ClientServiceImpl clientService;
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
-
-    @ApiOperation(value = "测试用")
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test() {
-        return "hello";
-    }
-
-    @RequestMapping(value = "/getRecordsAll", method = RequestMethod.GET)
-    public List<ServiceRecords> getServiceRecordsAll() {
-        return serveRecordsService.getServiceRecordsAll();
-    }
-
-    @ApiOperation(value = "根据client_id获取维护记录")
-    @RequestMapping(value = "/getRecordsById", method = RequestMethod.GET)
-    public List<ServiceRecords> getServiceRecordsById(@RequestParam String clientId) {
-        return serveRecordsService.getServiceRecordsById(clientId);
-    }
-
-    @ApiOperation(value = "获取用户满意数据All")
-    @RequestMapping(value = "/getClientSatisAll", method = RequestMethod.GET)
-    public List<ClientSatisfaction> getClientSatisfactionAll() {
-        return clientSatisfactionService.getClientSatisfactionAll();
-    }
-
     @ApiOperation(value = "新增用户满意数据(用户id自动带出)，后台表：xx_cst")
     @RequestMapping(value = "/insertClientSatis", method = RequestMethod.POST)
     public int insertClientSatisfaction(
@@ -84,6 +58,5 @@ public class AppController {
                 client.getRole(),
                 firstResponse);
     }
-
 
 }
