@@ -3,6 +3,7 @@ package com.ares.ztserve.service.impl;
 import com.ares.ztserve.mapper.ClientSatisfactionMapper;
 import com.ares.ztserve.model.ClientSatisfaction;
 import com.ares.ztserve.service.ClientSatisfactionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +14,10 @@ import java.util.List;
  * @date 2023/2/21 021 10:38
  */
 @Service
+@RequiredArgsConstructor
 public class ClientSatisfactionServiceImpl implements ClientSatisfactionService {
-    @Autowired
-    private ClientSatisfactionMapper clientSatisfactionMapper;
-
-    @Override
-    public int getClientSatisfactionId() {
+    private final ClientSatisfactionMapper clientSatisfactionMapper;
+    public final int getClientSatisfactionId() {
         return clientSatisfactionMapper.getClientSatisfactionId();
     }
 

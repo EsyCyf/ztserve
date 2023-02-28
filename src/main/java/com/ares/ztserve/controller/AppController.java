@@ -9,6 +9,7 @@ import com.ares.ztserve.service.impl.ClientServiceImpl;
 import com.ares.ztserve.service.impl.ServeRecordsServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.RequiredArgsConstructor;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -23,15 +24,11 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/app")
 @CrossOrigin
+@RequiredArgsConstructor
 public class AppController {
-    @Autowired
-    private ServeRecordsServiceImpl serveRecordsService;
-    @Autowired
-    private ClientSatisfactionServiceImpl clientSatisfactionService;
-    @Autowired
-    private ClientServiceImpl clientService;
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    private final ServeRecordsServiceImpl serveRecordsService;
+    private final ClientSatisfactionServiceImpl clientSatisfactionService;
+    private final ClientServiceImpl clientService;
 
     @ApiOperation(value = "新增用户满意数据(用户id自动带出)，后台表：xx_cst")
     @RequestMapping(value = "/insertClientSatis", method = RequestMethod.POST)
