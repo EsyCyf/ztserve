@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
+import java.util.UUID;
+
 @SpringBootTest
 class ZtserveApplicationTests {
     @Autowired
@@ -15,10 +17,16 @@ class ZtserveApplicationTests {
     private ClientSatisfactionServiceImpl clientSatisfactionService;
     @Test
     void redisTest() {
-        int i = clientSatisfactionService.insertClientSatisfaction("chunmei_zeng@utacgroup.com",
-                "1", 1, "1", "1"
-        );
-        System.out.println(i);
+        String token = UUID.randomUUID().toString().replaceAll("-", "");
+        String token2 = UUID.randomUUID().toString().replaceAll("-", "");
+        String username = "APLUS";
+        stringRedisTemplate.opsForValue().set(username,token);
+        stringRedisTemplate.opsForValue().set(token,username);
+//        stringRedisTemplate.opsForSet().add(username,token2);
+        String s = stringRedisTemplate.opsForValue().get(username);
+        System.out.println(s);
+
+
     }
 
 }
