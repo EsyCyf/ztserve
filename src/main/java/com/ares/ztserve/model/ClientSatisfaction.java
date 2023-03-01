@@ -23,7 +23,7 @@ public class ClientSatisfaction {
     @ApiModelProperty("主键")
     private int cstId;
     @ApiModelProperty("客户邮箱")
-    private String email;
+    private String userName;
     @ApiModelProperty("问题分类")
     private String type;
     @ApiModelProperty("满意度")

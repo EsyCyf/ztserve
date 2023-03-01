@@ -22,5 +22,5 @@ public interface ClientSatisfactionMapper {
     /**
      * 新增用户满意度
      * */
-    int insertClientSatisfaction(int cstId,String email, String type,int satisDegree,String satisDesc,String feedback);
+    int insertClientSatisfaction(int cstId,String userName, String type,int satisDegree,String satisDesc,String feedback);
 }

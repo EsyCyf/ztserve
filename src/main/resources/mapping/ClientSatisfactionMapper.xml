@@ -4,7 +4,7 @@
 <mapper namespace="com.ares.ztserve.mapper.ClientSatisfactionMapper">
     <resultMap id="getClientSatisfactionRM" type="com.ares.ztserve.model.ClientSatisfaction">
         <result property="cstId" column="cst_id"/>
-        <result property="email" column="email"/>
+        <result property="userName" column="user_name"/>
         <result property="type" column="type"/>
         <result property="satisDegree" column="satis_degree"/>
         <result property="satisDesc" column="satis_desc"/>
@@ -18,7 +18,7 @@
     </select>
 
     <select id="getClientSatisfactionAll" resultMap="getClientSatisfactionRM">
-        select cst_id, email, type, satis_degree, satis_desc, feedback
+        select cst_id, user_name, type, satis_degree, satis_desc, feedback
         from xx_cst
     </select>
 
@@ -28,8 +28,8 @@
             <if test="cstId != null">
                 cst_id,
             </if>
-            <if test="email != null">
-                email,
+            <if test="userName != null">
+                user_name,
             </if>
 
             <if test="type != null">
@@ -44,14 +44,16 @@
             <if test="feedback != null">
                 feedback,
             </if>
+            create_by,
             create_date,
+            create_program,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="cstId != null">
                 #{cstId},
             </if>
-            <if test="email != null">
-                #{email},
+            <if test="userName != null">
+                #{userName},
             </if>
             <if test="type != null">
                 #{type},
@@ -65,7 +67,9 @@
             <if test="feedback != null">
                 #{feedback},
             </if>
+            'Java',
             sysdate,
+            'Java',
         </trim>
 
     </insert>
