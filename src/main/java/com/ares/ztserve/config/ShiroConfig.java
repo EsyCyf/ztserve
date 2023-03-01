@@ -50,12 +50,12 @@ public class ShiroConfig {
         filterMap.put("/logout","anon");
 
         //放行swagger接口
-
         filterMap.put("/docs", "anon");
         filterMap.put("/swagger-ui.html", "anon");
         filterMap.put("/webjars/springfox-swagger-ui/**", "anon");
         filterMap.put("/swagger-resources/**", "anon");
         filterMap.put("/v2/api-docs", "anon");
+
 
         //拦截所有路径, 它自动会跑到 AuthFilter这个自定义的过滤器里面
         filterMap.put("/**","auth");

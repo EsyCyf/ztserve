@@ -24,8 +24,6 @@ import java.util.concurrent.TimeUnit;
 @CrossOrigin
 @RequiredArgsConstructor
 public class LoginController {
-    private final UserServiceImpl userService;
-    private final StringRedisTemplate redisTemplate;
     private final LoginServiceImpl loginService;
 
     /*@ApiOperation(value = "登录接口，返回状态码+token，账号密码对应xx_personnel_base.email和user_password")
@@ -52,7 +50,7 @@ public class LoginController {
         return Msg.fail("登录失败");
     }*/
 
-    @ApiOperation(value = "登录接口，返回状态码+token，账号密码对应xx_personnel_base.email和user_password")
+    @ApiOperation(value = "登录接口，返回状态码+token，账号密码对应xx_personnel_base.user_name和user_password")
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public Msg loginByname2(@RequestParam("username") String username, @RequestParam("password") String password) {
         return loginService.login(username,password);
