@@ -16,7 +16,7 @@
         b.user_name,
         b.user_role,
         b.user_password
-        from XX_PERSONNEL_BASE_dev b
+        from XX_PERSONNEL_BASE b
         <where>
             and b.user_name = #{username}
             and b.is_active='Y'

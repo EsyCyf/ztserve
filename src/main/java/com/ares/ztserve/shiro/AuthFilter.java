@@ -49,9 +49,11 @@ public class AuthFilter extends AuthenticatingFilter {
 
         //StringUtils.isBlank(String str)  判断str字符串是否为空或者长度是否为0
         if(org.apache.commons.lang3.StringUtils.isBlank(token)){
+            httpServletResponse.setContentType("application/json;charset=utf-8");
             httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
             httpServletResponse.setHeader("Access-Control-Allow-Origin",httpServletRequest.getHeader("Origin") );
-            httpServletResponse.setCharacterEncoding("UTF-8");
+            //httpServletResponse.setCharacterEncoding("UTF-8");
+
             Msg msg= Msg.fail("请先登录");
             httpServletResponse.getWriter().write(gson.toJson(msg));
             return false;
@@ -71,9 +73,10 @@ public class AuthFilter extends AuthenticatingFilter {
         try {
             //处理登录失败的异常
             Throwable throwable = e.getCause() == null ? e : e.getCause();
-            Msg msg=Msg.fail("登录凭证已失效，请重新登录");
+            Msg msg=Msg.fail("login fail");
             httpResponse.getWriter().write(gson.toJson(msg));
         } catch (IOException e1) {
+            Msg msg=Msg.fail("error");
         }
         return false;
     }

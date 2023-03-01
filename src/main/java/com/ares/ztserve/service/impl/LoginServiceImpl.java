@@ -27,7 +27,7 @@ public class LoginServiceImpl implements LoginService {
     /**
      * EXPIRE_TIME 单位秒
      */
-    private static final long EXPIRE_TIME = 3600;
+    private static final long EXPIRE_TIME = 7200;
 
     @Override
     public Msg login(String username, String password) {
