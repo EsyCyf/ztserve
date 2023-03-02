@@ -54,13 +54,15 @@ public class AppController {
     ) {
 
         User user = (User) SecurityUtils.getSubject().getPrincipal();
-        Client client = clientService.findClientByName(user.getAccount());
+        Client client = clientService.findActiveClientByName(user.getAccount());
         System.out.println("client is : " + client);
         return serveRecordsService.getServeRecords(
                 client.getCustomNo(),
                 client.getUserName(),
-                client.getRole(),
+                client.getUserRole(),
                 firstResponse);
     }
+
+
 
 }

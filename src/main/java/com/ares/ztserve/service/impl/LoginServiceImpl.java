@@ -37,6 +37,8 @@ public class LoginServiceImpl implements LoginService {
         } catch (Exception e) {
             return Msg.fail("登录失败");
         }
+        System.out.println("username:"+username);
+        System.out.println("password:"+password);
 
         System.out.println("密码是：" + user.getPassword());
         if (user.getPassword().equals(password)) {

@@ -3,23 +3,114 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ares.ztserve.mapper.ClientMapper">
     <resultMap id="getClientInfoRM" type="com.ares.ztserve.model.Client">
-        <result property="userName" column="user_name" />
-        <result property="customNo" column="custom_no" />
-        <result property="role" column="user_role" />
+        <result property="personnelBaseId" column="personnel_base_id"/>
+        <result property="customNo" column="custom_no"/>
+        <result property="userName" column="user_name"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="userNameSz" column="user_name_sz"/>
+        <result property="userRole" column="user_role"/>
+        <result property="isActive" column="is_active"/>
+        <result property="email" column="email"/>
+        <result property="isMail" column="is_mail"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="updateProgram" column="update_program"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createDate" column="create_date"/>
+        <result property="createProgram" column="create_program"/>
     </resultMap>
 
-    <select id="findClientByName" resultMap="getClientInfoRM">
+    <select id="findActiveClientByName" resultMap="getClientInfoRM">
         select
-        b.user_name,
+        b.personnel_base_id,
         b.custom_no,
-        b.user_role
-        from XX_PERSONNEL_BASE b
+        b.user_name,
+        -- b.user_password,
+        b.user_name_sz,
+        b.user_role,
+        -- b.is_active,
+        -- b.email,
+        -- b.is_mail,
+        -- b.update_by,
+        -- b.update_date,
+        -- b.update_program,
+        -- b.create_by,
+        -- b.create_date,
+        -- b.create_program
+        from xx_personnel_base b
         <where>
             and b.user_name = #{userName}
             and b.is_active='Y'
         </where>
     </select>
 
+    <select id="getClientInfo" resultMap="getClientInfoRM" parameterType="com.ares.ztserve.model.Client">
+        select
+        b.personnel_base_id,
+        b.custom_no,
+        b.user_name,
+        b.user_password,
+        b.user_name_sz,
+        b.user_role,
+        b.is_active,
+        b.email,
+        b.is_mail,
+        b.update_by,
+        b.update_date,
+        b.update_program,
+        b.create_by,
+        b.create_date,
+        b.create_program
+        from xx_personnel_base b
+        <where>
+            1=1
+            <if test="personnelBaseId!=null">
+                and b.personnel_base_id = #{personnelBaseId}
+            </if>
+            <if test="customNo!=null">
+                and b.custom_no = #{customNo}
+            </if>
+            <if test="userName!=null">
+                and b.user_name = #{userName}
+            </if>
+            <if test="userPassword!=null">
+                and b.user_password = #{userPassword}
+            </if>
+            <if test="userNameSz!=null">
+                and b.user_name_sz = #{userNameSz}
+            </if>
+            <if test="userRole!=null">
+                and b.user_role = #{userRole}
+            </if>
+            <if test="isActive!=null">
+                and b.is_active = #{isActive}
+            </if>
+            <if test="email!=null">
+                and b.email = #{email}
+            </if>
+            <if test="isMail!=null">
+                and b.email = #{isMail}
+            </if>
+            <if test="updateBy!=null">
+                and b.email = #{updateBy}
+            </if>
+            <if test="updateDate!=null">
+                and b.email = #{updateDate}
+            </if>
+            <if test="updateProgram!=null">
+                and b.email = #{updateProgram}
+            </if>
+            <if test="createBy!=null">
+                and b.email = #{createBy}
+            </if>
+            <if test="createDate!=null">
+                and b.email = #{createDate}
+            </if>
+            <if test="createProgram!=null">
+                and b.email = #{createProgram}
+            </if>
+        </where>
+    </select>
 
 
 </mapper>

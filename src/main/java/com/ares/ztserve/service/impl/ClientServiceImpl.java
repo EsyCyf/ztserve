@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author ESy
  * @date 2023/2/27 027 9:38
@@ -16,7 +18,12 @@ import org.springframework.stereotype.Service;
 public class ClientServiceImpl implements ClientService {
     private final ClientMapper clientMapper;
     @Override
-    public Client findClientByName(String email) {
-        return clientMapper.findClientByName(email);
+    public Client findActiveClientByName(String userName) {
+        return clientMapper.findActiveClientByName(userName);
+    }
+
+    @Override
+    public List<Client> getClientInfo(Client client) {
+        return clientMapper.getClientInfo(client);
     }
 }
