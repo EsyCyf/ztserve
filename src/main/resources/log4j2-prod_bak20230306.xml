@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="fatal">
     <Properties>
-        <Property name="baseDir" value="./app/log"/>
+        <Property name="baseDir" value="./log"/>
         <!-- 格式化输出：%d格式化日期，%-5level：级别从左显示5个字符宽度，%thread表示线程名，%msg：日志消息，%n是换行符 -->
         <property name="logPattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%logger{0}:%line][%thread] %X{logger_id} - [TID: %X{EagleEye-TraceID}] %msg%n</property>
     </Properties>
