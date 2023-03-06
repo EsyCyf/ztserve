@@ -27,7 +27,7 @@
         b.user_name,
         -- b.user_password,
         b.user_name_sz,
-        b.user_role,
+        b.user_role
         -- b.is_active,
         -- b.email,
         -- b.is_mail,
