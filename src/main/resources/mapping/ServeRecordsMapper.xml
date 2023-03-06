@@ -64,7 +64,7 @@
         <where>
             <choose>
                 <when test="userRole==1">
-                    and custom_no = #{customerNo}
+                    /*and custom_no = #{customerNo}*/
                     and email = #{userName}
                 </when>
                 <when test="userRole==2">
